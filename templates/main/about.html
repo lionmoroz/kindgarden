@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block title %}
+  Про нас
+{% endblock title %}
+{% block content %}
+<section id="mu-course-content">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="mu-course-content-area">
+             <div class="row">
+               <div class="col-md-9">
+                 <!-- start course content container -->
+                 {% for a in about%}
+                 <div class="mu-course-container mu-course-details">
+                   <div class="row">
+                     <div class="col-md-12">
+                       <div class="mu-latest-course-single">
+                         <figure class="mu-latest-course-img">
+                           <a href="#"><img src="{{a.photo.url}}" style="
+                            height: 500px; width:700px; object-fit: cover;" alt="img"></a>
+                         </figure>
+                         <div class="mu-latest-course-single-content">
+                           <h2>{{a.title}}</h2>                            
+                            <p>{{a.description|safe}}</p>
+                         </div>
+                       </div> 
+                     </div>                                   
+                   </div>
+                 </div>
+                 {% endfor %}
+                 <!-- end course content container -->
+               </div>
+               <div class="col-md-3">
+                 <!-- start sidebar -->
+                 <aside class="mu-sidebar">
+                   <!-- start single sidebar -->
+                   <div class="mu-single-sidebar">
+                     <h3>Категорії</h3>
+                     <ul class="mu-sidebar-catg">
+                      {% url 'about' as about_url %}
+                      <li {% if request.get_full_path == about_url%} class="active"{% endif %}><a href="{{about_url}}">Про нас</a></li>
+                      {% url 'document' as document_url %}
+                      <li {% if request.get_full_path == document_url%} class="active"{% endif %}><a href="{{document_url}}">Докумети</a></li>
+                      {% url 'team' as team_url %}
+                      <li{% if request.get_full_path == team_url%} class="active"{% endif %}><a href="{{team_url}}">Наш колектив</a></li>
+                     </ul>
+                   </div>
+                   <!-- end single sidebar -->
+                 </aside>
+                 <!-- / end sidebar -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

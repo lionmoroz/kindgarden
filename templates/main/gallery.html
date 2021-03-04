@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{%load static%}
+
+
+{% block title %}
+  Галерея
+{% endblock title %}
+  
+
+{% block content %}
+<section id="mu-gallery">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="mu-gallery-area">
+         <!-- start title -->
+         <div class="mu-title">
+           <h2>Наші фото</h2>
+         </div>
+         <!-- end title -->
+         <!-- start gallery content -->
+         <div class="mu-gallery-content">
+           <!-- Start gallery menu -->
+           <div class="mu-gallery-top">              
+             <ul>
+               <li class="filter active" data-filter="all">Всі фото</li>
+               {%for c in all_category%}
+               <li class="filter" data-filter=".{{c.slug}}">{{c.name}}</li>
+               {% endfor %}
+             </ul>
+           </div>
+           <!-- End gallery menu -->
+           <div class="mu-gallery-body">
+             <ul id="mixit-container" class="row">
+               <!-- start single gallery image -->
+               {% for p in all_gallery %}
+               <li class="col-md-4 col-sm-6 col-xs-12 mix {{p.category.slug}}">
+                 <div class="mu-single-gallery">                  
+                   <div class="mu-single-gallery-item">
+                     <div class="mu-single-gallery-img">
+                       <a href="#"><img alt="img" src="{{p.photo.url}}" ></a>
+                     </div>
+                     <div class="mu-single-gallery-info">
+                       <div class="mu-single-gallery-info-inner">
+                         <h4>{{p.name}}</h4>
+                         <p>{{p.category.name}}</p>
+                         <a href="{{p.photo.url}}" data-fancybox-group="gallery" class="fancybox"><span class="fa fa-eye"></span></a>
+                       </div>
+                     </div>                  
+                   </div>
+                 </div>
+               </li>
+               {% endfor %}
+             </ul>            
+           </div>
+         </div>
+         <!-- end gallery content -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

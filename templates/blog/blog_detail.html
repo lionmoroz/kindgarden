@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  Новина
+{% endblock title %}
+
+{% block content %}
+
+<section id="mu-course-content">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-14">
+          <div class="mu-course-content-area">
+             <div class="row">
+               <div class="col-md-12">
+                 <!-- start course content container -->
+                 <div class="mu-course-container mu-blog-single">
+                   <div class="row">
+                     <div class="col-md-12 col-sm-4">
+                       <article class="mu-blog-single-item">
+                         <figure class="mu-blog-single-img">
+                           <figcaption class="mu-blog-caption">
+                             <h3>{{post.title}}</h3>
+                           </figcaption>                      
+                         </figure>
+                         <div class="mu-blog-meta">
+                            {{post.date_created | date}}
+                         </div>
+                         <div class="mu-blog-description">
+                           {{ post.text|safe }}
+                         </div>
+                       </article>
+                     </div>                                   
+                   </div>
+                 </div>
+                 <!-- end course content container -->
+                 <!-- start related course item -->
+                 <div class="row">
+                   <div class="col-xs-19 col-lg-9 ">
+                     <div class="mu-related-item">
+                       <h3>Інші новини</h3>
+                       <div class="mu-related-item-area">
+                         <div id="mu-related-item-slide">
+                            {% for p in random_post %} 
+                            <div class="col-md-5">
+                                <article class="mu-blog-single-item">
+                                  <figure class="mu-blog-single-img">
+                                    <a href="{{p.get_absolute_url}}"><img src="{% if p.photo %}{{p.photo.url}}{%else%}
+                                     {% static 'img/no_photo.png' %}{%endif%}" height="320px">
+                                      <h3>{{p.title}}</h3>
+                                    </figcaption>                      
+                                  </figure>
+                                  <div class="mu-blog-meta">
+                                    {{p.date_created | date}}
+                                  </div>
+                                  <div class="mu-blog-description">
+                                    <a class="mu-read-more-btn" href="{{p.get_absolute_url}}">Детальніше</a>
+                                  </div>
+                                </article> 
+                              </div>
+                           {% endfor %}
+                         </div>
+                       </div>
+                     </div>
+                   </div>
+                 </div>
+                 <!-- end start related course item -->
+               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}

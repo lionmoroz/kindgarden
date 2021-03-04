@@ -1,0 +1,134 @@
+{% extends 'base.html' %}
+{% load static%}
+
+{% block title %}
+  Головна
+{% endblock title %}
+
+{% block content %}
+  <!-- Start Slider -->
+  <section id="mu-slider">
+    <!-- Start single slider item -->
+    {% for i in info %}
+    <div class="mu-slider-single">
+      <div class="mu-slider-img">
+        
+        <figure>
+          {% if i.photo %}
+          <img src="{{i.photo.url}}" style="
+          height: 500px; object-fit: cover;" alt="img">
+          {% endif %}
+        </figure>
+
+      </div>
+      <div class="mu-slider-content">
+        
+        <h2>{{i.title}}</h2>
+        {% if i.short_description %}
+        <p>{{i.short_description}}</p>
+        {% endif %}
+        {% if i.url_button %}
+        <a href="{{i.url_button}}" class="mu-read-more-btn">Детальніше</a>
+        {% endif %}
+      </div>
+    </div>
+    {% endfor %}
+    <!-- Start single slider item -->    
+  </section>
+  <!-- End Slider -->
+
+  <!-- Start about us -->
+  <section id="mu-about-us">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="mu-about-us-area">           
+            <div class="row">
+              <div class="col-lg-6 col-md-6">
+                <div class="mu-about-us-left">
+                  <!-- Start Title -->
+                  <div class="mu-title">
+                    <h2>Про нас</h2>
+                  {%for a in about%}                
+                  </div>
+                  <!-- End Title -->
+                  {{a.description|truncatewords:70 | safe }}
+                </div>
+              </div> 
+              {% if a.video_url %}
+              <div class="col-lg-6 col-md-6">
+                <div class="mu-about-us-right">
+                  <a id="mu-abtus-video" href="{{a.video_url}}" target="mutube-video">
+                    <img src="{{a.photo.url}}" style="
+                    height: 300px;  object-fit: cover;" alt="img">
+                  </a>
+                </div>
+              </div>
+              {% else %}
+              <div class="col-lg-6 col-md-6 text-center">
+                <div class="mu-about-us">
+                    <img src="{{a.photo.url}}" style="
+                    height: 300px; object-fit: cover;" alt="img">
+                </div>
+              </div>
+              {% endif %}
+                <div class="p-3" >
+                  <a class="mu-post-btn" href="{% url 'about' %}"> Детальніше</a>
+                </div>
+                  <!-- <div class="mu-latest-course-img">
+                  <img src="{{a.photo.url}}" style="
+                    height: 300px;  object-fit: cover;" alt="img">
+                  </div> -->
+                  
+                  
+
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End about us -->
+
+
+
+  <!-- Start latest course section -->
+  <section id="mu-latest-courses">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 col-md-12">
+          <div class="mu-latest-courses-area">
+            <!-- Start Title -->
+            <div class="mu-title">
+              <h2>Наші новини</h2>
+            </div>
+            <!-- End Title -->
+            <!-- Start latest course content -->            
+            <div id="mu-latest-course-slide" class="mu-latest-courses-content">
+              {% for p in random_post %}
+              <div class="col-lg-4 col-md-4 col-xs-12">
+                <div class="mu-latest-course-single">
+                  <figure class="mu-latest-course-img">
+                    <a href="{{p.get_absolute_url}}"><img src="{% if p.photo %}{{p.photo.url}}{%else%}
+                            {% static 'img/no_photo.png' %}{%endif%}" style="
+                            height: 250px; object-fit: cover;" alt="img"></a>
+                  </figure>
+                  <div class="mu-latest-course-single-content">
+                    <h4><a href="#">{{p.title}}</a></h4>
+                    <div class="mu-latest-course-single-contbottom">
+                      <a class="mu-course-details" href="{{p.get_absolute_url}}">Детальніше</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+            <!-- End latest course content -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End latest course section -->
+{% endblock %}

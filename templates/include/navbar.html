@@ -1,0 +1,60 @@
+ {% load static %}
+ {% load contact_tags %}  
+   <!--START SCROLL TOP BUTTON -->
+  <a class="scrollToTop" href="#">
+    <i class="fa fa-angle-up"></i>      
+  </a>
+<!-- END SCROLL TOP BUTTON -->
+ <!-- Start header  -->
+  <header id="mu-header">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 col-md-12">
+          <div class="mu-header-area">
+            <div class="row">
+              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                {% contact_nav %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <!-- End header  -->
+  <section id="mu-menu">
+    <nav class="navbar navbar-default" role="navigation">  
+      <div class="container">
+        <div class="navbar-header">
+          <!-- FOR MOBILE VIEW COLLAPSED BUTTON -->
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <!-- LOGO -->              
+          <!-- TEXT BASED LOGO -->
+          <!-- <a class="logo"  href="index.html"><img src="{% static 'img/logo.png'%}"  width="200px" ><span>СОНЕЧКО</span></a> -->
+           <a class="navbar-brand" href="{% url 'home' %}"><i class="fa fa-sun-o"></i><span>СОНЕЧКО</span></a>  
+          <!-- IMG BASED LOGO  -->
+          <!-- <a class="navbar-brand" href="index.html"><img src="assets/img/logo.png" alt="logo"></a> -->
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul id="top-menu" class="nav navbar-nav navbar-right main-nav">
+            {% url 'home' as home_url %}
+            <li {% if request.get_full_path == home_url %} class="active"{% endif %}><a href="{{home_url}}">Головна</a></li>            
+            {% url 'about'  as about_url %}
+            <li {% if request.get_full_path == about_url%} class="active"{% endif %}><a href="{{about_url }}">Про нас</a></li>           
+            {% url 'photo_list' as photo_list_url %}
+            <li{% if request.get_full_path == photo_list_url%} class="active"{% endif %}><a href="{{photo_list_url}}">Галерея</a></li>
+            {% url 'blog:post_list' as post_list_url %}
+            <li{% if request.get_full_path == post_list_url%} class="active"{% endif %}><a href="{{post_list_url}}">Новини</a></li>          
+            {% url 'contact' as contact_url %}
+            <li {% if request.get_full_path == contact_url%} class="active"{% endif %}><a href="{{contact_url}}">Контакти</a></li>
+            <!-- <li><a href="404.html">404 Page</a></li>                -->
+          </ul>                     
+        </div><!--/.nav-collapse -->        
+      </div>     
+    </nav>
+  </section>

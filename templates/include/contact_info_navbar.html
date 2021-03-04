@@ -1,0 +1,12 @@
+{% for c in contact_info %}
+<div class="mu-header-top-left">
+  <div class="mu-top-email">
+    <i class="fa fa-envelope"></i>
+    <a href='mailto:{{c.email}}'><span>{{c.email}}</span></a>
+  </div>
+  <div class="mu-top-phone">
+    <i class="fa fa-phone"></i>
+    <a href='tel:{{c.phone}}'><span>{{c.phone}}</span></a>
+  </div>
+</div>
+{% endfor %}

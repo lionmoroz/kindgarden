@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Контакти
+{% endblock title %}
+{% block content %}
+<!-- Start contact  -->
+<section id="mu-contact">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="mu-contact-area">
+           <!-- start title -->
+           <div class="mu-title">
+             <h2>Контактні данні</h2>
+            
+           </div>
+           <!-- end title -->
+           <!-- start contact content -->
+           <div class="mu-contact-content">
+            {% for c in contact_info %}           
+             <div class="row">
+               <div class="col-md-6">
+                 <div class="mu-contact-left">
+                   <div class="col-lg-6 col-md-3 col-sm-3">
+                     <div class="mu-footer-widget">
+                       <address>
+                         <p>Назва: {{c.name}}</p>  
+                         <p>Адреса: {{c.streat}}</p>
+                         {%if c.phone%}
+                         <p>Телефон: {{c.phone}} </p>
+                         {% endif %}
+                         {%if c.phone_two%}
+                         <p>Телефон: {{c.phone_two}}</p>
+                         {% endif %}
+                         <p>Email: {{c.email}}</p>
+                       </address>
+                     </div>
+                   </div>
+                 </div>
+               </div>
+               <div class="col-md-6">
+                 <div class="mu-contact-right">               
+                  <iframe src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=ru&amp;q=48.893999841221216,%2026.577891880305266+&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+                 </div>
+               </div>
+             </div>
+            {% endfor %}
+           </div>
+           <!-- end contact content -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End contact  -->    
+{% endblock content %}
+    

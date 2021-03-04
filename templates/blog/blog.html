@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  Новини
+{% endblock title %}
+{% block content %}
+
+
+
+<section id="mu-course-content">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="mu-course-content-area">
+             <div class="row">
+               <div class="col-md-12">
+                 <!-- start course content container -->
+                 <div class="mu-course-container mu-blog-archive">
+                   <div class="row">
+                    {% for p in posts %}   
+                     <div class="col-md-4 col-sm-4">
+                       <article class="mu-blog-single-item">
+                         <figure class="mu-blog-single-img">
+                           <a href="{{p.get_absolute_url}}"><img src="{% if p.photo %}{{p.photo.url}}{%else%}
+                            {% static 'img/no_photo.png' %}{%endif%}" height="320px">
+                             <h3>{{p.title}}</h3>
+                           </figcaption>                      
+                         </figure>
+                         <div class="mu-blog-meta">
+                           {{p.date_created | date}}
+                         </div>
+                         <div class="mu-blog-description">
+                           <a class="mu-read-more-btn" href="{{p.get_absolute_url}}">Детальніше</a>
+                         </div>
+                       </article> 
+                     </div>
+                    {% endfor %}                   
+                   </div>
+                 </div>
+                 <!-- end course content container -->
+                 <!-- start course pagination -->
+                 <span class="all">Сторінока {{ page_obj.number }} з {{ page_obj.paginator.num_pages }}.</span>
+                 <div class="mu-pagination">
+                   <nav>                    
+                    {% if page_obj.has_other_pages %}
+                     <ul class="pagination">
+                      {% for i in page_obj.paginator.page_range %}
+                        {% if page_obj.number == i %}
+                          <li class="active"><a href="#">{{ i }}</a></li>
+                        {% else %}  
+                          <li ><a href="?page={{ i }}">{{ i }}</a></li>
+                       {% endif %}
+                      {% endfor %} 
+                     </ul>
+                    {% endif %} 
+                   </nav>
+                 </div>
+                 <!-- end course pagination -->
+               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}

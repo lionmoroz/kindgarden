@@ -33,7 +33,6 @@
 /* BASE - Base tyles, Variables, Mixins, etc. */
 body {
   background-color: #ffffff;
-  font-family: "Roboto", sans-serif;
   color: #333333;
   font-size: 16px;
   overflow-x: hidden;

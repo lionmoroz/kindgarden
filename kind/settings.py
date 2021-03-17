@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 import dj_database_url
 from pathlib import Path
+import cloudinary
 import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 # Application definition
@@ -30,6 +31,7 @@ INSTALLED_APPS = [
     'main',
     'blog',
     'tinymce',
+    'cloudinary',
 ]
 
 MIDDLEWARE = [

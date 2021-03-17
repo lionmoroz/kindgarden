@@ -1,6 +1,5 @@
 
 from pathlib import Path
-import cloudinary
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -32,14 +31,7 @@ DATABASES = {
 }
 
 
-cloudinary.config(
-  cloud_name = os.environ.get('CLOUD_NAME'),
-  api_key = os.environ.get('API_KEY'),
-  api_secret = os.environ.get('API_SECRET'),
-  secure = True
-)
 
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static/'),]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles/')

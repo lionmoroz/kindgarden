@@ -133,7 +133,7 @@ STATIC_URL = '/static/'
 
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
 
 cloudinary.config(
   cloud_name = os.environ.get('CLOUD_NAME'),

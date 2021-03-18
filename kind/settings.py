@@ -14,6 +14,8 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 import dj_database_url
 from pathlib import Path
 import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 # Application definition
@@ -32,6 +34,7 @@ INSTALLED_APPS = [
     'blog',
     'tinymce',
     'cloudinary',
+    'cloudinary_storage',
 ]
 
 MIDDLEWARE = [
@@ -133,15 +136,16 @@ STATIC_URL = '/static/'
 
 
 MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 
-cloudinary.config(
-  cloud_name = os.environ.get('CLOUD_NAME'),
-  api_key = os.environ.get('API_KEY'),
-  api_secret = os.environ.get('API_SECRET'),
-)
+# cloudinary.config(
+#   cloud_name = os.environ.get('CLOUD_NAME'),
+#   api_key = os.environ.get('API_KEY'),
+#   api_secret = os.environ.get('API_SECRET'),
+# )
 
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
 
 TINYMCE_DEFAULT_CONFIG = {
     'cleanup_on_startup': True,

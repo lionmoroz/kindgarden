@@ -1,3 +1,6 @@
+import os
+from django.conf import settings
+from django.core.files.storage import FileSystemStorage
 from django.db import models
 from django.urls import reverse
 
@@ -21,7 +24,8 @@ class AboutAs(models.Model):
 
 class Documentation(models.Model):
     name = models.CharField(verbose_name="Імя документа", max_length=50)
-    files = models.FileField(verbose_name="Документ" , upload_to= 'documentation', max_length=100)
+    my_storage = FileSystemStorage(location = os.path.join(settings.BASE_DIR, 'documentation'))
+    files = models.FileField(verbose_name="Документ" , storage=my_storage, max_length=100)
     
 
     class Meta:
@@ -66,8 +70,8 @@ class Gallery(models.Model):
     
 
 class ContactInfo(models.Model):
-    name = models.CharField(("Повна назва"), max_length=50)
-    streat = models.CharField(("Вулиця"), max_length=50)
+    name = models.CharField(("Повна назва"), max_length=500)
+    streat = models.CharField(("Вулиця"), max_length=100)
     phone = models.CharField(("Телефон номер 1"), max_length=50, blank=True, null=True)
     phone_two = models.CharField(("Телефон номер 2"), max_length=50, blank=True, null=True)
     email = models.EmailField(("Почта"), max_length=254)

@@ -135,14 +135,10 @@ STATIC_URL = '/static/'
 
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 
-# cloudinary.config(
-#   cloud_name = os.environ.get('CLOUD_NAME'),
-#   api_key = os.environ.get('API_KEY'),
-#   api_secret = os.environ.get('API_SECRET'),
-# )
+
+
 
 
 
@@ -150,7 +146,6 @@ TINYMCE_DEFAULT_CONFIG = {
     'cleanup_on_startup': True,
     'custom_undo_redo_levels': 20,
     'selector': 'textarea',
-    # 'theme': 'advanced',
     'plugins': '''
             textcolor save link image media preview codesample contextmenu
             table code lists fullscreen  insertdatetime  nonbreaking

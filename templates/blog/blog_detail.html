@@ -47,7 +47,8 @@
                                 <article class="mu-blog-single-item">
                                   <figure class="mu-blog-single-img">
                                     <a href="{{p.get_absolute_url}}"><img src="{% if p.photo %}{{p.photo.url}}{%else%}
-                                     {% static 'img/no_photo.png' %}{%endif%}" height="320px">
+                                     {% static 'img/no_photo.png' %}{%endif%}" style="
+                                     height: 320px; object-fit: cover;">
                                       <h3>{{p.title}}</h3>
                                     </figcaption>                      
                                   </figure>
